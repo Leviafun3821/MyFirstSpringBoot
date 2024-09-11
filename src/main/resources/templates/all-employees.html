@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Employees</title>
+</head>
+<body>
+
+<h2>All Employees</h2>
+<br>
+
+<!-- Кнопка для добавления нового работника -->
+<a href="/addNewEmployee">Add New Employee</a>
+<br><br>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Operations</th>
+    </tr>
+
+    <tr th:each="emp : ${allEmps}">
+        <td th:text="${emp.name}">Name</td>
+        <td th:text="${emp.surname}">Surname</td>
+        <td th:text="${emp.department}">Department</td>
+        <td th:text="${emp.salary}">Salary</td>
+        <td>
+            <input type="button" value="Update"
+                   th:onclick="'window.location.href=\'' + @{/updateInfo(empId=${emp.id})} + '\''" />
+
+            <input type="button" value="Delete"
+                   th:onclick="'window.location.href=\'' + @{/deleteEmployee(empId=${emp.id})} + '\''" />
+        </td>
+    </tr>
+
+</table>
+
+<br>
+
+</body>
+</html>
